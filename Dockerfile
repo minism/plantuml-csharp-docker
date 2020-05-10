@@ -41,6 +41,9 @@ ENV PATH $PATH:/root/.dotnet/tools
 # Declare the volume for the source code we're going to operate on
 VOLUME /code
 
+# Generation variables.
+ENV PUML_GEN_ARGS "-public"
+
 # Run the final script.
 COPY gen.sh .
 RUN chmod +x gen.sh
