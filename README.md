@@ -7,6 +7,10 @@ The entrypoint script takes two arguments, the path to the input directory and t
 Example usage on a Unity repository:
 
     docker run --rm -v "$(pwd):/code" minism/plantuml-csharp Assets/Scripts Diagrams
+    
+Extra arguments after input and output directories are forwarded to the puml-gen command [documented here](https://github.com/pierre3/PlantUmlClassDiagramGenerator#usage). For example:
+
+    docker run --rm -v "$(pwd):/code" minism/plantuml-csharp Assets/Scripts Diagrams -public -createAssociation -allInOne
 
 Technologies used:
 
