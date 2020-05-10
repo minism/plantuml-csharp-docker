@@ -26,10 +26,11 @@ RUN set -eux; \
   java --version; \
   javac --version
 
-# Install GraphViz and wget.
+# Install some dependencies.
 RUN \
   apk add --no-cache graphviz wget ca-certificates && \
   apk add --no-cache graphviz wget ca-certificates ttf-dejavu fontconfig
+RUN apk add --no-cache rsync
 
 # Download PlantUML.
 RUN wget "http://sourceforge.net/projects/plantuml/files/plantuml.1.2020.8.jar/download" -O plantuml.jar

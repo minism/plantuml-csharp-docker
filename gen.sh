@@ -1,9 +1,12 @@
 #!/bin/sh
 
-RELATIVE_INPUT_DIR=$1
+INPUT_DIR="/code/$1"
 shift
-RELATIVE_OUTPUT_DIR=$1
+OUTPUT_DIR="/code/$1"
 shift
+TMP_DIR=/tmp/output
 
-puml-gen /code/$RELATIVE_INPUT_DIR /code/$RELATIVE_OUTPUT_DIR -dir $@
-java -jar plantuml.jar -tsvg "/code/$RELATIVE_OUTPUT_DIR/**.puml"
+mkdir $TMP_DIR
+puml-gen $INPUT_DIR $TMP_DIR -dir $@
+java -jar plantuml.jar -tsvg "$TMP_DIR/**.puml"
+rsync -avm --include='*.png' --include='*.svg' -f 'hide,! */' $TMP_DIR/ $OUTPUT_DIR
